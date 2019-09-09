@@ -12,11 +12,15 @@ class ToDoListViewController: UITableViewController {
 
     var itemArray = ["First", "Second", "Third"]
     
+    var userDefaults = UserDefaults.standard
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
-        
+        if let items = userDefaults.array(forKey: "TodoListArray") as? [String]
+        {
+            itemArray = items
+        }
     }
     
     //MARK - Tableview Datasource Methods
@@ -55,7 +59,6 @@ class ToDoListViewController: UITableViewController {
         
         tableView.deselectRow(at: indexPath, animated: true)
         
-       
     }
     
     //MARK - Add New Items
@@ -72,6 +75,9 @@ class ToDoListViewController: UITableViewController {
             print(textfield.text)
             
             self.itemArray.append(textfield.text!)
+            
+            self.userDefaults.set(self.itemArray, forKey: "TodoListArray")
+            
             self.tableView.reloadData()
         }
         
