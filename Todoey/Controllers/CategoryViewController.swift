@@ -47,7 +47,7 @@ class CategoryViewController: UITableViewController
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        print(categoryArray[indexPath.row].name)
+//        print(categoryArray[indexPath.row].name)
         
         performSegue(withIdentifier: "goToItems", sender: self)
         
